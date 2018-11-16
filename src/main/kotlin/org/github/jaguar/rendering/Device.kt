@@ -1,4 +1,6 @@
-package org.github.jaguar
+package org.github.jaguar.rendering
+
+import org.github.jaguar.Color
 
 /**
  * @author Ермаков Игорь Александрович (email: igor.yermakov94@yandex.ru).

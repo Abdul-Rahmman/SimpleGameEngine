@@ -1,5 +1,6 @@
 package org.github.jaguar
 
+import org.github.jaguar.rendering.Device
 import java.util.logging.Logger
 
 

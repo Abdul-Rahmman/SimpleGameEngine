@@ -1,13 +1,14 @@
-package org.github.jaguar
+package org.github.jaguar.rendering
 
 /**
  * @author Ермаков Игорь Александрович (email: igor.yermakov94@yandex.ru).
  */
-class DeviceParameters(val screenMode: ScreenMode,
+open class DeviceParameters(val screenMode: ScreenMode,
                        val screenWidth:Int,
                        val screenHeight: Int,
                        val windowTitle: String = "",
-                       val vsync: Boolean = true) {
+                       val vsync: Boolean = true,
+                       val resizeableWindow: Boolean = false) {
     enum class ScreenMode{
         FULLSCREEN,
         WINDOWED_FULLSCREEN,
