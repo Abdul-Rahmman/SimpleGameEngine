@@ -3,10 +3,5 @@ package org.github.jaguar
 /**
  * @author Ермаков Игорь Александрович (email: igor.yermakov94@yandex.ru).
  */
-interface Device {
-    var clearColor: Color
-    fun getInfo():String
-    fun init()
-    fun release()
-    fun loop(f:()->Unit)
+class Color(var r: Float, val g: Float, val b: Float, val a: Float) {
 }

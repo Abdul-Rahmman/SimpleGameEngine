@@ -12,11 +12,12 @@ import org.lwjgl.system.MemoryUtil
  * @author Ермаков Игорь Александрович (email: igor.yermakov94@yandex.ru).
  */
 class GLDevice(val deviceParameters: DeviceParameters) : Device {
+    override var clearColor: Color = Color(0f,0f,0f,0f)
     private var window: Long = MemoryUtil.NULL
 
     override fun loop(f: () -> Unit) {
         GL.createCapabilities()
-        GL11.glClearColor(1.0f, 0.0f, 0.0f, 0.0f)
+        GL11.glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a)
 
         while (!GLFW.glfwWindowShouldClose(window)) {
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT or GL11.GL_DEPTH_BUFFER_BIT)
