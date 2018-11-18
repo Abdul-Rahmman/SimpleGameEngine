@@ -10,5 +10,7 @@ interface Device {
     fun getInfo():String
     fun init()
     fun release()
-    fun loop(f:()->Unit)
+    fun loop(f:(Int)->Unit)
+    fun getFPS():Int
+    fun getDelta():Int
 }

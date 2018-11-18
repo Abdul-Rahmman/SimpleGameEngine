@@ -15,20 +15,26 @@ import org.lwjgl.system.MemoryUtil
 class GLDevice(val deviceParameters: DeviceParameters) : Device {
     override var clearColor: Color = Color(0f, 0f, 0f, 0f)
     private var window: Long = MemoryUtil.NULL
+    private var fps: Int = 0
+    private var delta = 1
 
-    override fun loop(f: () -> Unit) {
+    override fun loop(f: (Int) -> Unit) {
         GL.createCapabilities()
         GL11.glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a)
         GL11.glClearDepth( 1.0 )              // Разрешить очистку буфера глубины
         GL11.glEnable( GL11.GL_DEPTH_TEST )            // Разрешить тест глубины
         GL11.glDepthFunc( GL11.GL_LEQUAL )
 
+        var start: Long
         while (!GLFW.glfwWindowShouldClose(window)) {
+            start = System.currentTimeMillis()
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT or GL11.GL_DEPTH_BUFFER_BIT)
-            f()
-
+            f(delta)
             GLFW.glfwSwapBuffers(window)
             GLFW.glfwPollEvents()
+            delta = (System.currentTimeMillis() - start).toInt()
+            if(delta != 0)
+                fps = (1.0 / delta * 1000).toInt()
         }
     }
 
@@ -108,5 +114,11 @@ class GLDevice(val deviceParameters: DeviceParameters) : Device {
         GLFW.glfwSetErrorCallback(null)?.free()
     }
 
+    override fun getFPS(): Int {
+        return fps
+    }
 
+    override fun getDelta(): Int {
+        return delta
+    }
 }

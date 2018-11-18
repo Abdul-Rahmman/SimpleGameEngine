@@ -14,7 +14,13 @@ class Application(val device: Device){
     fun run(){
         LOG.info("Start application with ${device.getInfo()}.")
         device.init()
-        device.loop {  }
+        var lastFPS = 0
+        device.loop { delta ->
+            if(device.getFPS() != lastFPS) {
+                LOG.info("FPS = ${device.getFPS()}")
+                lastFPS = device.getFPS()
+            }
+        }
         device.release()
     }
 }
