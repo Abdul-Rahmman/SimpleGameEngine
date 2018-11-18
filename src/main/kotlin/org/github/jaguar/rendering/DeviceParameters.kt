@@ -11,7 +11,7 @@ open class DeviceParameters(val screenMode: ScreenMode,
                        val resizeableWindow: Boolean = false) {
     enum class ScreenMode{
         FULLSCREEN,
-        WINDOWED_FULLSCREEN,
+        WINDOWED_NOBORDER,
         WINDOWED
     }
 }

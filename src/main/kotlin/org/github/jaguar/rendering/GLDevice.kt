@@ -53,11 +53,25 @@ class GLDevice(val deviceParameters: DeviceParameters) : Device {
         var monitor = MemoryUtil.NULL
         if(deviceParameters.screenMode == DeviceParameters.ScreenMode.FULLSCREEN)
             monitor = GLFW.glfwGetPrimaryMonitor()
+
         window = GLFW.glfwCreateWindow(deviceParameters.screenWidth, deviceParameters.screenHeight, deviceParameters.windowTitle, monitor, MemoryUtil.NULL)
-        if (window == MemoryUtil.NULL)
+        if (window == MemoryUtil.NULL) {
+            GLFW.glfwTerminate()
             throw RuntimeException("Failed to create the GLFW window")
-        if(deviceParameters.screenMode == DeviceParameters.ScreenMode.WINDOWED_FULLSCREEN){
-            window = GLFW.glfwGetPrimaryMonitor()
+        }
+
+        if(deviceParameters.screenMode == DeviceParameters.ScreenMode.WINDOWED_NOBORDER){
+            monitor = GLFW.glfwGetPrimaryMonitor()
+            val mode = GLFW.glfwGetVideoMode(monitor)
+            if(mode == null){
+                GLFW.glfwTerminate()
+                throw IllegalStateException("Video Mode is not configured")
+            }
+
+            GLFW.glfwWindowHint(GLFW.GLFW_RED_BITS, mode.redBits())
+            GLFW.glfwWindowHint(GLFW.GLFW_GREEN_BITS, mode.greenBits())
+            GLFW.glfwWindowHint(GLFW.GLFW_BLUE_BITS, mode.blueBits())
+            GLFW. glfwWindowHint(GLFW.GLFW_REFRESH_RATE, mode.refreshRate())
             GLFW.glfwSetWindowMonitor(window,monitor,0,0,deviceParameters.screenWidth,deviceParameters.screenHeight,GLFW.GLFW_DONT_CARE)
         }
 

@@ -8,5 +8,5 @@ import org.github.jaguar.rendering.GLDevice
  */
 
 fun main(args:Array<String>){
-    Application(GLDevice(DeviceParameters(DeviceParameters.ScreenMode.WINDOWED, 800, 600, "Test"))).run()
+    Application(GLDevice(DeviceParameters(DeviceParameters.ScreenMode.WINDOWED_NOBORDER, 800, 600, "Test"))).run()
 }
