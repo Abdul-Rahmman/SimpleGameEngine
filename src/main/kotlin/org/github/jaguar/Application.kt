@@ -17,7 +17,6 @@ class Application(val device: Device){
         var lastFPS = 0
         device.loop { delta ->
             if(device.getFPS() != lastFPS) {
-                LOG.info("FPS = ${device.getFPS()}")
                 lastFPS = device.getFPS()
             }
         }
