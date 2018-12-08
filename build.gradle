@@ -24,9 +24,10 @@ wrapper {
 
 
 buildscript {
-    ext.kotlin_version = '1.3.10'
+    ext.kotlin_version = '1.3.11'
     ext.kotlinx_coroutines_version = '1.0.1'
     ext.lwjgl_version = '3.2.0'
+    ext.glm_version = 'v1.0.1'
 
     repositories {
         mavenCentral()
@@ -53,6 +54,7 @@ repositories {
     mavenCentral()
     jcenter()
     maven { url "https://kotlin.bintray.com/kotlinx" }
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -80,6 +82,7 @@ dependencies {
     compile "org.lwjgl:lwjgl-par:$lwjgl_version:$lwjglNatives"
     compile "org.lwjgl:lwjgl-stb:$lwjgl_version:$lwjglNatives"
     //compile "org.lwjgl:lwjgl-vulkan:$lwjgl_version:$lwjglNatives"
+    compile "com.github.kotlin-graphics:glm:$glm_version"
 }
 
 
